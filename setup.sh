@@ -4,7 +4,7 @@ export ATOM_URL="https://github.com/atom/atom/releases/download/v1.9.9/atom-amd6
 export ATOM_SAVE="atom-amd64.deb"
 export CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 export CHROME_SAVE="google-chrome-stable_current_amd64.deb"
-export PACKAGES="git wget openjdk-7-jre openjdk-7-jdk mongodb-org maven vlc browser-plugin-vlc virtualbox vagrant"
+export PACKAGES="git wget default-jre default-jdk mongodb-org maven vlc browser-plugin-vlc virtualbox vagrant"
 export NPM_PACKAGES="mocha coffee-script gulp grunt-cli istanbul nodemon"
 export RUBY_GEMS="bundler sass compass"
 export START_DIR="$PWD"
@@ -28,7 +28,7 @@ echo "---> Installing packages"
 # Step 1: Add sources
 echo "---> Updating package database + installing packages to help with sources..."
 sudo apt-get update || check_exit
-sudo apt-get install apt-transport-https ca-certificates $APT_ARGS || check_exit
+sudo apt install apt-transport-https ca-certificates $APT_ARGS || check_exit
 echo ""
 echo "---> Adding package sources..."
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 || check_exit
@@ -46,7 +46,7 @@ sudo apt-get upgrade $APT_ARGS || check_exit
 echo ""
 echo "---> Installing packages we want..."
 echo "     Packages: $PACKAGES"
-sudo apt-get install $PACKAGES $APT_ARGS || check_exit
+sudo apt install $PACKAGES $APT_ARGS || check_exit
 
 # Install packages from sources not registered with apt-get
 echo ""
@@ -72,10 +72,10 @@ sudo dpkg -i $CHROME_SAVE
 echo ""
 echo "---> Installing docker..."
 echo "---> Updating kernal..."
-sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual $APT_ARGS || check_exit
+sudo apt install linux-image-extra-$(uname -r) linux-image-extra-virtual $APT_ARGS || check_exit
 echo ""
 echo "---> Installing docker..."
-sudo apt-get install docker-engine $APT_ARGS || check_exit
+sudo apt install docker-engine $APT_ARGS || check_exit
 echo ""
 echo "---> Creating docker user group and adding this user ($USER) to it..."
 sudo groupadd docker || check_exit
