@@ -78,8 +78,8 @@ echo "---> Installing docker..."
 sudo apt install docker-engine $APT_ARGS || check_exit
 echo ""
 echo "---> Creating docker user group and adding this user ($USER) to it..."
-sudo groupadd docker || check_exit
-sudo usermod -aG docker $USER || check_exit
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 # Step 4: Install nvm for nodejs
 echo ""
@@ -87,8 +87,9 @@ echo "---> Installing nvm for nodejs..."
 # Script may need updating
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash || check_exit
 echo ""
-echo "---> Reloading ~/.bashrc"
-. ~/.bashrc || check_exit
+echo "---> Loading nvm"
+export NVM_DIR="/home/kishan/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 echo ""
 echo "---> Installing nodejs (stable)..."
 nvm install stable || check_exit
