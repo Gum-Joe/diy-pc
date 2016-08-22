@@ -1,8 +1,13 @@
 #!/usr/env bash
 # Setup script for Ubuntu partition of my DIY PC
-export PACKAGES="openjdk-7-jre openjdk-7-jdk mongodb-org maven vlc browser-plugin-vlc virtualbox vagrant"
+export ATOM_URL="https://github.com/atom/atom/releases/download/v1.9.9/atom-amd64.deb"
+export ATOM_SAVE="atom-amd64.deb"
+export CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+export CHROME_SAVE="google-chrome-stable_current_amd64.deb"
+export PACKAGES="git wget openjdk-7-jre openjdk-7-jdk mongodb-org maven vlc browser-plugin-vlc virtualbox vagrant"
 export NPM_PACKAGES="mocha coffee-script gulp grunt-cli istanbul nodemon"
 export RUBY_GEMS="bundler sass compass"
+export START_DIR="$PWD"
 export APT_ARGS=""
 
 # Check if --auto was passed
@@ -42,6 +47,26 @@ echo ""
 echo "---> Installing packages we want..."
 echo "     Packages: $PACKAGES"
 sudo apt-get install $PACKAGES $APT_ARGS || check_exit
+
+# Install packages from sources not registered with apt-get
+echo ""
+echo "---> Installing packages from external sources"
+echo "---> All packages are saved to ~/.setup-cache"
+mkdir ~/.setup-cache
+cd ~/.setup-cache
+# Install atom
+echo "---> Downloading GitHub's Atom text editor ($ATOM_URL) and saving to $ATOM_SAVE"
+wget -O $ATOM_SAVE $ATOM_URL
+echo ""
+echo "---> Installing GitHub's Atom text editor..."
+sudo dpkg -i $ATOM_SAVE
+# Install google chrome
+echo ""
+echo "---> Downloading Google Chrome ($ATOM_URL) and saving to $CHROME_SAVE"
+wget -O $CHROME_SAVE $CHROME_URL
+echo ""
+echo "---> Installing Google Chrome..."
+sudo dpkg -i $CHROME_SAVE
 
 # Step 4: Install docker
 echo ""
