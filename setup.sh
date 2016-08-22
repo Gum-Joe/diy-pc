@@ -1,4 +1,4 @@
-#!/usr/env bash
+#!/usr/bin/env bash
 # Setup script for Ubuntu partition of my DIY PC
 export ATOM_URL="https://github.com/atom/atom/releases/download/v1.9.9/atom-amd64.deb"
 export ATOM_SAVE="atom-amd64.deb"
