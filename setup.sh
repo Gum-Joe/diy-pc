@@ -8,6 +8,7 @@ export PACKAGES="git wget default-jre default-jdk mongodb-org maven vlc browser-
 export NPM_PACKAGES="mocha coffee-script gulp grunt-cli istanbul nodemon"
 export ATOM_PACKAGES="atom-bootstrap3 atom-easy-jsdoc atom-jade autocomplete-emojis color-picker debug es6-javascript file-icons git-commit git-plus github-issues jquery-snippets language-batchfile language-chef language-docker language-ejs language-ignore language-js-specs language-sln linter linter-coffee-variables linter-coffeelint linter-csslint linter-docker linter-eslint linter-htmlhint linter-sass-lint linter-scss-lint markdown-scroll-sync markdown-writer minimap pigments react react-es6-snippets react-redux-atom-snippets react-redux-snippets react-snippets travis-ci-status"
 export ATOM_THEMES="atom-material-syntax atom-material-syntax-dark atom-material-ui elementary-light-ui hydra-syntax-theme made-of-code-atom metro-syntax metro-ui nucleus-dark-ui one-dark-material-syntax pumpkin-syntax sepia-syntax seti-ui state-of-nature-syntax wombat-dark-syntax wombat-light-syntax"
+export RUBY_VERSION="2.3.1"
 export RUBY_GEMS="bundler sass compass"
 export START_DIR="$PWD"
 export APT_ARGS=""
@@ -76,6 +77,7 @@ apm install $ATOM_PACKAGES
 echo ""
 echo "---> Installing atom themes using apm..."
 echo "     Themes: $ATOM_THEMES"
+apm install $ATOM_THEMES
 
 # Step 4: Install docker
 echo ""
@@ -120,8 +122,8 @@ echo "---> Loading rvm"
 . ~/.rvm/scripts/rvm || check_exit
 echo ""
 echo "---> Install ruby (ruby-head) & using it"
-rvm install ruby-head --binary || check_exit
-rvm use ruby-head || check_exit
+rvm install $RUBY_VERSION --binary || check_exit
+rvm use $RUBY_VERSION || check_exit
 echo ""
 echo "---> Installing ruby gems..."
 echo "     Gems: $RUBY_GEMS"
