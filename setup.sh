@@ -6,7 +6,8 @@ export CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_curre
 export CHROME_SAVE="google-chrome-stable_current_amd64.deb"
 export PACKAGES="git wget default-jre default-jdk mongodb-org maven vlc browser-plugin-vlc virtualbox vagrant"
 export NPM_PACKAGES="mocha coffee-script gulp grunt-cli istanbul nodemon"
-export APM_PACKAGES="linter linter-eslint"
+export ATOM_PACKAGES="atom-bootstrap3 atom-easy-jsdoc atom-jade autocomplete-emojis color-picker debug es6-javascript file-icons git-commit git-plus github-issues jquery-snippets language-batchfile language-chef language-docker language-ejs language-ignore language-js-specs language-sln linter linter-coffee-variables linter-coffeelint linter-csslint linter-docker linter-eslint linter-htmlhint linter-sass-lint linter-scss-lint markdown-scroll-sync markdown-writer minimap pigments react react-es6-snippets react-redux-atom-snippets react-redux-snippets react-snippets travis-ci-status"
+export ATOM_THEMES="atom-material-syntax atom-material-syntax-dark atom-material-ui elementary-light-ui hydra-syntax-theme made-of-code-atom metro-syntax metro-ui nucleus-dark-ui one-dark-material-syntax pumpkin-syntax sepia-syntax seti-ui state-of-nature-syntax wombat-dark-syntax wombat-light-syntax"
 export RUBY_GEMS="bundler sass compass"
 export START_DIR="$PWD"
 export APT_ARGS=""
@@ -69,9 +70,12 @@ echo ""
 echo "---> Installing GitHub's Atom text editor..."
 sudo dpkg -i $ATOM_SAVE
 echo ""
-echo "---> Install apm packages"
-echo "     Packages: $APM_PACKAGES"
-apm install $APM_PACKAGES
+echo "---> Installing apm packages..."
+echo "     Packages: $ATOM_PACKAGES"
+apm install $ATOM_PACKAGES
+echo ""
+echo "---> Installing atom themes using apm..."
+echo "     Themes: $ATOM_THEMES"
 
 # Step 4: Install docker
 echo ""
